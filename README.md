@@ -12,4 +12,4 @@ And here we are.
 So let this be a lesson to you, mates - *you can make video games, too*. You just need to do it. The prototype of this game (Level one and the start screen) took me about 5 hours of just typing, running, googling and tweaking. Now that I know the way around the IDE, the language and the library, I could probably do it again in 2 hours. Experiment, have fun with it, etc etc.
 
 ##Current Version  
-(Alpha 1.8)[https://github.com/dougRiss/FatQuest/wiki/Alpha-1.8]
+[Alpha 1.8](https://github.com/dougRiss/FatQuest/wiki/Alpha-1.8)
