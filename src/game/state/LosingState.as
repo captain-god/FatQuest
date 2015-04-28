@@ -61,12 +61,12 @@ package game.state
 			add(mainMenu)
 			
 			var levelcodetext:FlxText;
-			levelcodetext = new FlxText(0, FlxG.height - 40, FlxG.width, "Level " + (level + 1) + "'s passphrase is");
+			levelcodetext = new FlxText(0, FlxG.height - 40, FlxG.width, "Level " + (level) + "'s passphrase is");
 			levelcodetext.setFormat (null, 8, 0xFFFFFFFF, "center");
 			add(levelcodetext);
 			
 			var levelcode:FlxText;
-			levelcode = new FlxText(0, FlxG.height - 30, FlxG.width, Level.levelCode[level +1]);
+			levelcode = new FlxText(0, FlxG.height - 30, FlxG.width, Level.levelCode[level]);
 			levelcode.setFormat (null, 8, 0xFFFF0000, "center");
 			add(levelcode);
 		}

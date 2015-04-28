@@ -5,6 +5,11 @@ package levels.leveldata
 	 * There are a planned 20 levels in total.
 	 */
 	public class Level {
+		
+		/**
+		 * last level you can get to in the game
+		 */
+		public static const LAST_LEVEL:int = 4;
 		/**
 		 * See the wiki for a template level and information/instructions on how to set up a level file
 		 */

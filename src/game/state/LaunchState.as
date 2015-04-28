@@ -1,7 +1,10 @@
 package game.state 
 {
 	import assets.Asset;
-	import org.flixel.*;
+	import org.flixel.FlxState;
+	import org.flixel.FlxButton;
+	import org.flixel.FlxText;
+	import org.flixel.FlxG;
 	
 	/**
 	 * The main menu

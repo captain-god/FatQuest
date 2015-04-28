@@ -1,10 +1,18 @@
 package game.state 
 {
 	import assets.Asset;
+	import levels.leveldata.Level;
 	import levels.Loader;
 	import game.objects.Goodie;
 	import game.player.Player;
-	import org.flixel.*;
+	import org.flixel.FlxState;
+	import org.flixel.FlxButton;
+	import org.flixel.FlxText;
+	import org.flixel.FlxSprite;
+	import org.flixel.FlxG;
+	import org.flixel.FlxGroup;
+	import org.flixel.FlxTilemap;
+	
 	
 	/**
 	 * This is the state that the game plays from. All the hard work happens here.
@@ -139,8 +147,15 @@ package game.state
 				FlxG.switchState(new LosingState(timeLimit, grandScore + currentScore, currentLevel));
 			}
 			else if (goodies.countLiving() == 0 && goodies.countDead() > 0) {
-				FlxG.switchState(new WinningState(timeLimit, grandScore + currentScore, currentLevel));
+				//check to see if this is the last round!
+				if (currentLevel  == Level.LAST_LEVEL) {
+					FlxG.switchState(new WinningState(timeLimit, grandScore + currentScore, currentLevel));
+				}
+				else {
+					FlxG.switchState(new InterludeState(timeLimit, grandScore + currentScore, currentLevel));
+				}
 			}
+
 		}
 		
 		/**
