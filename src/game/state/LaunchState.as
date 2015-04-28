@@ -1,6 +1,7 @@
 package game.state 
 {
 	import assets.Asset;
+	import levels.leveldata.Level;
 	import org.flixel.FlxState;
 	import org.flixel.FlxButton;
 	import org.flixel.FlxText;
@@ -66,7 +67,7 @@ package game.state
 		override public function update():void {
 			super.update(); 
 			if (FlxG.keys.justPressed("SPACE")) {
-				FlxG.switchState(new PlayState(4));
+				FlxG.switchState(new PlayState(levels.leveldata.Level.LAST_LEVEL));
 			}
 		}
 	}

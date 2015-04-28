@@ -9,7 +9,7 @@ package levels.leveldata
 		/**
 		 * last level you can get to in the game
 		 */
-		public static const LAST_LEVEL:int = 4;
+		public static const LAST_LEVEL:int = 6;
 		/**
 		 * See the wiki for a template level and information/instructions on how to set up a level file
 		 */
@@ -18,13 +18,15 @@ package levels.leveldata
 		[Embed(source = "level_2.txt", mimeType = "application/octet-stream")] public static var LEVEL_2:Class;
 		[Embed(source = "level_3.txt", mimeType = "application/octet-stream")] public static var LEVEL_3:Class;
 		[Embed(source = "level_4.txt", mimeType = "application/octet-stream")] public static var LEVEL_4:Class;
+		[Embed(source = "level_5.txt", mimeType = "application/octet-stream")] public static var LEVEL_5:Class;
+		[Embed(source = "level_6.txt", mimeType = "application/octet-stream")] public static var LEVEL_6:Class;
 		
 		/**
 		 * levelArray is the array holding all the levels in it for quick access ;) 
 		 * index 0 is the secret level: shhhhhh!
 		 */
-		public static var levelArray:Array = new Array(SECRET_LEVEL, LEVEL_1, LEVEL_2, LEVEL_3, LEVEL_4
-		
+		public static var levelArray:Array = new Array(SECRET_LEVEL, LEVEL_1, LEVEL_2, LEVEL_3, LEVEL_4,
+		LEVEL_5, LEVEL_6
 		);
 		 
 		/**
@@ -34,8 +36,8 @@ package levels.leveldata
 		 * The game is called "FatQuest", so I included food in all the level codes. Yanno, for continuity.
 		 */
 		public static var levelCode:Array = new Array( 
-		"secret-tuna", "", "bacon-lazer", "flying-watermelon", "bustling-beet", "punch-taco", "ayy-lmao",
-		"mustard-nun", "salami-swami", "boogalo-donut", "beef-curry", "crispy-celery", "swimming-bread", 
+		"secret-tuna", "", "bacon-lazer", "flying-watermelon", "bouncing-beet", "punch-taco", "lmao-nayse",
+		"mustard-nun", "salami-desk", "boogaloo-donut", "beef-curry", "crispy-celery", "swimming-bread", 
 		"seeding-strawberry", "noodle-kaboodle", "microwave-fish", "moose-cheese", "sexy-grapes", "icy-jam",
 		"berry-blizzard", "apache-jello"
 		);
