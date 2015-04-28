@@ -67,7 +67,7 @@ package game.state
 		override public function update():void {
 			super.update(); 
 			if (FlxG.keys.justPressed("SPACE")) {
-				FlxG.switchState(new PlayState(levels.leveldata.Level.LAST_LEVEL));
+				FlxG.switchState(new PlayState(9));
 			}
 		}
 	}

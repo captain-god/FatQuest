@@ -41,7 +41,7 @@ package game.state
 			add(title);
 			
 			var instructions:FlxText;
-			instructions = new FlxText(0, FlxG.height/2 - 25, FlxG.width, "<I'm not done yet>");
+			instructions = new FlxText(0, FlxG.height/2 - 25, FlxG.width, "<coming in beta>");
 			instructions.setFormat (null, 15, 0xFFFFFFFF, "center");
 			add(instructions);
 			
