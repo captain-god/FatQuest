@@ -12,6 +12,7 @@ package levels
 		
 		public static const MAP_DATA:int = 0;
 		public static const GOODIE_DATA:int = 1;
+		//Hi! If you want to add another constant, like in the tutorial on the wiki, do it here!
 		
 		/**
 		 * (crudely) parses a text file and (hopefully) spits out the requested section
