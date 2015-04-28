@@ -1,8 +1,10 @@
 package assets 
 {
-	/* include all assets like this.
-	 * They're all static, so they can be used anywhere.
-	 * Hooray!
+	/**
+	 * embeds all the assets used in the game in one class for easy access
+	 * Usage: when referencing an asset, type "new Asset.name();"
+	 * for example,
+	 * var playerPNG:FlxSprite = new Asset.playerPNG();
 	 */
 	public class Asset {
 		//image

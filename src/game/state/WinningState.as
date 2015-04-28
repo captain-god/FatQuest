@@ -4,8 +4,7 @@ package game.state
 	import levels.leveldata.Level;
 	import org.flixel.*;
 	/**
-	 * ...
-	 * @author dougRiss
+	 * The state you arrive at upon completing a level
 	 */
 	public class WinningState extends FlxState
 	{
@@ -13,13 +12,21 @@ package game.state
 		private var level:int;
 		private var timer:int;
 		
+		/**
+		 * Constructor
+		 * @param	timer - how much time you've had left in the previous round
+		 * @param	score - Your cumulative score so far
+		 * @param	level - the level you just beat.
+		 */
 		public function WinningState(timer:int, score:int, level:int) {
 			this.timer = timer;
 			this.score = score;
 			this.level = level;
-			trace(level)
 		}
 		
+		/**
+		 * Create the state.
+		 */
 		override public function create():void {
 			FlxG.bgColor = 0xff000000;
 			FlxG.play(Asset.woop_1MP3);

@@ -7,14 +7,13 @@ package game.state
 	import org.flixel.FlxG;
 	
 	/**
-	 * ...
-	 * @author dougRiss
+	 * The about state just tells a bit about the game
 	 */
 	public class AboutState extends FlxState {
 		
 		override public function create():void {
 			FlxG.bgColor = 0xff000000;
-			var t:FlxText;
+			var t:FlxText; //I'm just declaring one text item, then making new instances of it.
 			
 			t = new FlxText( 0, 0, FlxG.width, "FATQUEST");
 			t.setFormat (null, 30, 0xFFFFFFFF, "center");

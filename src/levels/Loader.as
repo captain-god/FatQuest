@@ -5,53 +5,40 @@ package levels
 	import levels.leveldata.Level;
 	import org.flixel.*;
 	
+	/**
+	 * Loads the levels from their text files and makes use of them.
+	 */	
 	public class Loader {		
 		
-		/* Reads the level data from the appropriate level txt file, then splits off the goodie data
-		 * and only keeps the map data
-		 * @param level - the level number to load
-		 * @return - a CSV string that represents the level
+		public static const MAP_DATA:int = 0;
+		public static const GOODIE_DATA:int = 1;
+		
+		/**
+		 * (crudely) parses a text file and (hopefully) spits out the requested section
+		 * @param level - the level you're trying to load
+		 * @param dataType - one of the constants at the top of this file: determines which
+		 * part of the file to give you
+		 * @return the string containing the section of data we want
 		 */
-		private static function makeMap(level:int = 0):String {
-			var fileContents:String;
-			var results:Array;
-			
-			switch (level) {
-				case 1:
-					fileContents = new Level.LEVEL_1();
-					results = fileContents.split("~");
-					return results[0];
-					break;
-				case 2:
-					fileContents = new Level.LEVEL_2();
-					results = fileContents.split("~");
-					return results[0];
-					break;
-				case 3:
-					fileContents = new Level.LEVEL_3();
-					results = fileContents.split("~");
-					return results[0];
-					break;
-				case 4:
-					fileContents = new Level.LEVEL_4();
-					results = fileContents.split("~");
-					return results[0];
-					break;
-				default:
-					return null;
-			}
+		public static function parseFile(level:int, dataType:int):String {
+			var fileContents:String = new Level.levelArray[level];
+			var results:Array = fileContents.split("~");
+			return results[dataType];		
 		}
 		
-		/* extracts the goodies from the .txt and makes the text into something usable
+		/**
+		 * extracts the goodies from the .txt and makes sense of them
 		 * @param coordinates - the string gathered from the split in the calling function (the "3,5;..." bit)
 		 * @param tileSize - the size of a tile on the map; needed so we can make a "grid" to put the items on.
 		 * @return FlxGroup - the group of goodies, ready to be added to the game!
 		 */
-		public static function extractGoodies(coordCSV:String, tileSize:int):FlxGroup {
+		public static function getGoodies(level:int, tileSize:int):FlxGroup {
 			var goodieGroup:FlxGroup = new FlxGroup();
+			var coordCSV:String = parseFile(level, GOODIE_DATA);
 			coordCSV = coordCSV.substring(2);
 			coordCSV = coordCSV.replace('\n', "");
 			coordCSV = coordCSV.replace('\r', "");
+			
 			var splitCoords:Array = coordCSV.split(";"); 
 			var XY:Array;
 			
@@ -63,53 +50,18 @@ package levels
 			return goodieGroup;
 		}
 		
-		/* Places all the goodies for a level within a map
-		 * @param level - the level number
-		 * @return goodieGroup:FlxGroup - the group of all the goodies placed
-		 */
-		public static function getGoodies(level:int, tileSize:int):FlxGroup {
-			var fileContents:String;
-			var results:Array;
-			
-			switch (level) {
-				case 1:
-					fileContents = new Level.LEVEL_1();
-					results = fileContents.split("~");
-					return extractGoodies(results[1], tileSize);
-					break;
-				case 2:
-					fileContents = new Level.LEVEL_2();
-					results = fileContents.split("~");
-					return extractGoodies(results[1], tileSize);
-					break;
-				case 3:
-					fileContents = new Level.LEVEL_3();
-					results = fileContents.split("~");
-					return extractGoodies(results[1], tileSize);
-					break;
-				case 4:
-					fileContents = new Level.LEVEL_4();
-					results = fileContents.split("~");
-					return extractGoodies(results[1], tileSize);
-					break;
-				default:
-					return null;
-			}
-		}
-		
-		/* Reads the level data from the appropriate level file
-		 * @param level - the level number to load
-		 * @return - a CSV string that represents the level
+		/**
+		 * Creates a TileMap from the level data gathered from makeMap()
+		 * @param level - the level you're trying to load
+		 * @param tileSize - the size of the tiles in the map.
+		 * @return builtLevel - a CSV string that represents the level, or a null string if no level is present
+		 * (this one can cause some funk, so be careful)
 		 */
 		public static function getMap(level:int, tileSize:int):FlxTilemap {
-			var madeMap:String = makeMap(level);
-			if (madeMap != null) {
-				var builtLevel:FlxTilemap = new FlxTilemap();
-				builtLevel.loadMap(makeMap(level), FlxTilemap.ImgAuto, tileSize, tileSize, FlxTilemap.AUTO);
+			var builtLevel:FlxTilemap = new FlxTilemap();
+			builtLevel.loadMap(parseFile(level, MAP_DATA), FlxTilemap.ImgAuto, tileSize, tileSize, FlxTilemap.AUTO);
 
-				return builtLevel;
-			}
-			else return null;
+			return builtLevel;
 		}
 	}
 }

@@ -3,8 +3,14 @@ package game.state
 	import assets.Asset;
 	import org.flixel.*;
 	
-	public class LaunchState extends FlxState
-	{
+	/**
+	 * The main menu
+	 */
+	public class LaunchState extends FlxState {
+		
+		/**
+		 * creates the main menu.
+		 */
 		override public function create():void {
 			FlxG.bgColor = 0xff000000;
 			
@@ -20,6 +26,8 @@ package game.state
 				FlxG.switchState(new PlayState());
 			});
 			add(playgame)
+			//that thing I did there, where for a parameter I put function():void, then wrote a function,
+			//is known as an 'anonymous function.' Wikipedia that shit for more information!
 			
 			var instructions:FlxButton;
 			instructions = new FlxButton(FlxG.width/2-40, FlxG.height / 2 - 10, "Instructions", function ():void 
@@ -48,15 +56,15 @@ package game.state
 			add(cngames);
 		}
  
+		/**
+		 * I use this to jump to the newest level for testing.
+		 * It's recommended you remove it before releasing, unless you edit it to just play from the start.
+		 */
 		override public function update():void {
 			super.update(); 
 			if (FlxG.keys.justPressed("SPACE")) {
 				FlxG.switchState(new PlayState(4));
 			}
-		}
-		
-		public function LaunchState() {
-			super();
 		}
 	}
 }

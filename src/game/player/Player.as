@@ -3,12 +3,20 @@ package game.player
 	import assets.Asset;
 	import org.flixel.*;
 	
+	/**
+	 * The player class
+	 */
 	public class Player extends FlxSprite 
 	{
-		//the player's girth will expand when they collect food
+		//the player's girth will expand when they collect food, so this gets larger as the game progresses
 		private var girth:int = 5;
 		
-		//Constructor
+		/**
+		 * Constructor
+		 * @param	x - the x position of the player when spawning
+		 * @param	y - the y position of the player when spawning
+		 * @param	size - the 'girth' of the player, or its dimensions, more specifically
+		 */
 		public function Player(x:int, y:int, size:int) 
 		{
 			this.x = x;
@@ -18,21 +26,35 @@ package game.player
 			loadGraphic(assets.Asset.playerPNG, false, false, girth, girth);
 		}
 		
-		//get the girth
+		/**
+		 * returns the size of the character
+		 * @return int telling how big we are
+		 */
 		public function getGirth():int {
 			return girth;
 		}
 		
+		/**
+		 * returns the x of the character
+		 * @return the x position
+		 */
 		public function getX():int {
 			return x;
 		}
 		
+		/**
+		 * returns the y of the character
+		 * @return the y position
+		 */
 		public function getY():int {
 			return y;
 		}
-		//it's worth noting that this extends FlxSprite, which has a get method for x and y
 		
-		//Updates every tick
+		/**
+		 * Updates every tick;
+		 * checking to see which buttons are pressed, and, if any
+		 * which direction to move the character around.
+		 */
 		override public function update():void {
 			if (FlxG.keys.pressed("W")) {
 				y -= 1;

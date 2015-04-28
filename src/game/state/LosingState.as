@@ -2,10 +2,13 @@ package game.state
 {
 	import assets.Asset;
 	import levels.leveldata.Level;
-	import org.flixel.*;
+	import org.flixel.FlxG;
+	import org.flixel.FlxButton;
+	import org.flixel.FlxText;
+	import org.flixel.FlxState;
+	
 	/**
-	 * ...
-	 * @author dougRiss
+	 * The state you arrive at when you lose
 	 */
 	public class LosingState extends FlxState
 	{
@@ -13,6 +16,12 @@ package game.state
 		private var level:int;
 		private var timer:int;
 		
+		/**
+		 * constructor
+		 * @param	timer - this is actually useless, it should be 0 if you're here...
+		 * @param	score - Your grand score before you died.
+		 * @param	level - the level you made it to.
+		 */
 		public function LosingState(timer:int, score:int, level:int) {
 			this.timer = timer;
 			this.score = score;
@@ -20,6 +29,9 @@ package game.state
 			trace(level)
 		}
 		
+		/**
+		 * Create this state
+		 */
 		override public function create():void {
 			FlxG.bgColor = 0xff000000;
 			FlxG.play(Asset.loseMP3);

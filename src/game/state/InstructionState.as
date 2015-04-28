@@ -4,7 +4,10 @@ package game.state
 	import org.flixel.FlxG;
 	import org.flixel.FlxText;
 	import org.flixel.FlxButton;
-
+	
+	/**
+	 * Displays how the game works
+	 */
 	public class InstructionState extends FlxState{
 		override public function create():void {
 			FlxG.bgColor = 0xff000000;
