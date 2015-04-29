@@ -49,7 +49,7 @@ package game.state
 			var playgame:FlxButton;
 			playgame = new FlxButton(FlxG.width/2-40, (FlxG.height / 2) - 10, "Retry", function ():void 
 			{
-				FlxG.switchState(new PlayState());
+				FlxG.switchState(new DifficultySelectState());
 			});
 			add(playgame)
 			

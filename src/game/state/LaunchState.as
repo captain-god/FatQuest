@@ -26,8 +26,7 @@ package game.state
 			var playgame:FlxButton;
 			playgame = new FlxButton(FlxG.width/2-40, FlxG.height / 2 - 30, "Play", function ():void 
 			{
-				FlxG.music.stop();
-				FlxG.switchState(new PlayState());
+				FlxG.switchState(new DifficultySelectState());
 			});
 			add(playgame)
 			//that thing I did there, where for a parameter I put function():void, then wrote a function,
@@ -40,15 +39,8 @@ package game.state
 			});
 			add(instructions)
 			
-			var levelSelect:FlxButton;
-			levelSelect = new FlxButton(FlxG.width/2-40, FlxG.height / 2 + 10, "Select Level", function ():void 
-			{
-				FlxG.switchState(new LevelSelectState);
-			});
-			add(levelSelect)
-			
 			var info:FlxButton;
-			info = new FlxButton(FlxG.width/2-40, FlxG.height / 2 + 30, "About", function ():void 
+			info = new FlxButton(FlxG.width/2-40, FlxG.height / 2 + 10, "About", function ():void 
 			{
 				FlxG.switchState(new AboutState);
 			});
@@ -58,17 +50,6 @@ package game.state
 			cngames = new FlxText(0, FlxG.height - 20, FlxG.width, "Created by Chaotic Neutral Games");
 			cngames.setFormat (null, 8, 0xFFFFFFFF, "center");
 			add(cngames);
-		}
- 
-		/**
-		 * I use this to jump to the newest level for testing.
-		 * It's recommended you remove it before releasing, unless you edit it to just play from the start.
-		 */
-		override public function update():void {
-			super.update(); 
-			if (FlxG.keys.justPressed("SPACE")) {
-				FlxG.switchState(new PlayState(9));
-			}
 		}
 	}
 }

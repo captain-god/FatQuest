@@ -14,6 +14,7 @@ package game.state
 		private var score:int;
 		private var level:int;
 		private var timer:int;
+		private var difficulty:int;
 		
 		/**
 		 * Constructor
@@ -21,10 +22,10 @@ package game.state
 		 * @param	score - Your cumulative score so far
 		 * @param	level - the level you just beat.
 		 */
-		public function InterludeState(timer:int, score:int, level:int) {
-			this.timer = timer;
-			this.score = score;
+		public function InterludeState(timer:int, score:int, level:int, difficulty:int) {
 			this.level = level;
+			this.score = score + ((timer * (50 * difficulty)));
+			this.difficulty = difficulty;
 		}
 		
 		/**
@@ -40,14 +41,14 @@ package game.state
 			add(title);
 			
 			var scoreBreakdown:FlxText;
-			scoreBreakdown = new FlxText( 0, 45, FlxG.width, "Score: " + (score + (timer * 100)));
+			scoreBreakdown = new FlxText( 0, 45, FlxG.width, "Score: " + score);
 			scoreBreakdown.setFormat (null, 12, 0xFFFFFFFF, "center");
 			add(scoreBreakdown);
 			
 			var playgame:FlxButton;
 			playgame = new FlxButton(FlxG.width/2-40, (FlxG.height / 2) - 10, "Continue", function ():void 
 			{
-				FlxG.switchState(new PlayState(level + 1, score + (timer * 100)));
+				FlxG.switchState(new PlayState(difficulty, level + 1, score));
 			});
 			add(playgame)
 			

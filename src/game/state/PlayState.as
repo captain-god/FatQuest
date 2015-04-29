@@ -19,7 +19,11 @@ package game.state
 	 */
 	public class PlayState extends FlxState 
 	{
-		private var player:         FlxGroup; //View the wiki for why I did this.
+		public static const DIFFICULTY_HARD:int = 3;
+		public static const DIFFICULTY_MEDIUM:int = 2;
+		public static const DIFFICULTY_EASY:int = 1;
+		
+		private var player:         FlxGroup; //groups all the players: see growPlayer for more info
 		private var playerToken:    Player; //The actual representation of the player.
 		private var goodies:        FlxGroup; //group for easy access
 		private var currentLevelMap:FlxTilemap; //the tilemap for the current level
@@ -31,6 +35,7 @@ package game.state
 		private var playing:        Boolean = true; //turns to false when you win or lose
 		private var somethingBroke: Boolean = false; //for sloppy, uneffective debugging.
 		private var currentScore:   int     = 0; //the score the user has gained from picking up blips
+		private var difficulty:     int;
 		
 		//Just some text fields.
 		private var scoreTxt:       FlxText;
@@ -40,14 +45,21 @@ package game.state
 		
 		/**
 		 * constructor
+		 * @param   diff - the difficulty for the level
 		 * @param	level - the level to load; default 1
 		 * @param	score - the score from any previous rounds; default 0
-		 * @param   timer - the time to set to before you restart; default 30
+		 * @param   timer - the time to set to before you restart; default -1; If timer == -1, it sets the time
+		 * to (75 - (difficulty * 15)), meaning difficulty 1 (easy) = 60 seconds
 		 */
-		public function PlayState(level:int = 1, score:int = 0, timer:int = 30 ):void {
+		public function PlayState(diff:int, level:int = 1, score:int = 0, timer:int = -1):void {
+			difficulty = diff;
 			currentLevel = level;
 			grandScore = score;
-			timeLimit = timer;
+			
+			if (timer == -1) {
+				timeLimit = 75 - (difficulty * 15);
+			}
+			else timeLimit = timer;
 		}
 		
 		/**
@@ -106,7 +118,7 @@ package game.state
 				}
 
 				if (playing && FlxG.keys.SPACE) {
-					FlxG.switchState(new PlayState(currentLevel, grandScore, timeLimit));
+					FlxG.switchState(new PlayState(difficulty, currentLevel, grandScore, timeLimit));
 				}
 
 				super.update();
@@ -149,10 +161,10 @@ package game.state
 			else if (goodies.countLiving() == 0 && goodies.countDead() > 0) {
 				//check to see if this is the last round!
 				if (currentLevel  == Level.LAST_LEVEL) {
-					FlxG.switchState(new WinningState(timeLimit, grandScore + currentScore, currentLevel));
+					FlxG.switchState(new WinningState(timeLimit, grandScore + currentScore, currentLevel, difficulty));
 				}
 				else {
-					FlxG.switchState(new InterludeState(timeLimit, grandScore + currentScore, currentLevel));
+					FlxG.switchState(new InterludeState(timeLimit, grandScore + currentScore, currentLevel, difficulty));
 				}
 			}
 
