@@ -45,7 +45,9 @@ package levels
 			
 			for each ( var coord:String in splitCoords) {
 				XY = coord.split(",");
-				goodieGroup.add(new Goodie((parseInt(XY[0]) * tileSize) + 3, (parseInt(XY[1]) * tileSize)+2));
+				if (XY[0] != 0 && XY[1] != 0) {
+					goodieGroup.add(new Goodie((parseInt(XY[0]) * tileSize) + 3, (parseInt(XY[1]) * tileSize)+2));
+				}
 			}
 			
 			return goodieGroup;
