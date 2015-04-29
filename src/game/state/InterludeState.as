@@ -21,6 +21,7 @@ package game.state
 		 * @param	timer - how much time you've had left in the previous round
 		 * @param	score - Your cumulative score so far
 		 * @param	level - the level you just beat.
+		 * @param   difficulty - the difficulty you're playing at
 		 */
 		public function InterludeState(timer:int, score:int, level:int, difficulty:int) {
 			this.level = level;
