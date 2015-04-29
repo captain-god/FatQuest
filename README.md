@@ -12,5 +12,4 @@ Thanks/Credits
 
 Music and gameplay by me, Doug "dougRiss" Young. My music library is on [Soundcloud](http://soundcloud.com/auxadome) and it's Creative Commons stuff, completely free to use so long as you credit me somewhere ;) (it's not all like the music in this, I promise lol)
 
-##Current Version  
-[Alpha 0.9](https://github.com/dougRiss/FatQuest/wiki/Version-History)
+##[Current Version](https://github.com/dougRiss/FatQuest/wiki/Version-History)

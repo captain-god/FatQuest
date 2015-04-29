@@ -36,7 +36,6 @@ package levels
 		public static function getGoodies(level:int, tileSize:int):FlxGroup {
 			var goodieGroup:FlxGroup = new FlxGroup();
 			var coordCSV:String = parseFile(level, GOODIE_DATA);
-			coordCSV = coordCSV.substring(2);
 			coordCSV = coordCSV.replace('\n', "");
 			coordCSV = coordCSV.replace('\r', "");
 			
@@ -46,6 +45,7 @@ package levels
 			for each ( var coord:String in splitCoords) {
 				XY = coord.split(",");
 				if (XY[0] != 0 && XY[1] != 0) {
+					//the + 3 to the x and +2 to the y is just so it centers the goodie
 					goodieGroup.add(new Goodie((parseInt(XY[0]) * tileSize) + 3, (parseInt(XY[1]) * tileSize)+2));
 				}
 			}
@@ -57,8 +57,7 @@ package levels
 		 * Creates a TileMap from the level data gathered from makeMap()
 		 * @param level - the level you're trying to load
 		 * @param tileSize - the size of the tiles in the map.
-		 * @return builtLevel - a CSV string that represents the level, or a null string if no level is present
-		 * (this one can cause some funk, so be careful)
+		 * @return builtLevel - a CSV string that represents the level
 		 */
 		public static function getMap(level:int, tileSize:int):FlxTilemap {
 			var builtLevel:FlxTilemap = new FlxTilemap();
