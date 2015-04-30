@@ -36,6 +36,7 @@ package game.state
 		 */
 		override public function create():void {
 			FlxG.bgColor = 0xff000000;
+			FlxG.music.stop();
 			FlxG.play(Asset.woop_1MP3);
 			FlxG.play(Asset.victoryMP3);
 			
