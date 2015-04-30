@@ -17,5 +17,7 @@ package assets
 		[Embed(source = "sound/sfx/lose.mp3")] public static var loseMP3:Class;
 		//music
 		[Embed(source = "sound/music/fatquest.mp3")] public static var themesongMP3:Class;
+		[Embed(source = "sound/music/fatquest_level.mp3")] public static var levelMP3:Class;
+		[Embed(source = "sound/music/fatquest_victory.mp3")] public static var victoryMP3:Class;
 	}
 }

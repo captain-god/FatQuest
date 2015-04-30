@@ -1,6 +1,7 @@
 package game.state 
 {
 	import levels.leveldata.Level;
+	import assets.Asset;
 	import org.flixel.FlxG;
 	import org.flixel.FlxButton;
 	import org.flixel.FlxText;
@@ -26,6 +27,8 @@ package game.state
 			easy = new FlxButton(FlxG.width/2-40, FlxG.height / 2 - 30, "Easy", function ():void 
 			{
 				FlxG.music.stop();
+				FlxG.playMusic(Asset.levelMP3, .5);
+				
 				FlxG.switchState(new PlayState(PlayState.DIFFICULTY_EASY, 1, 0, -1, 0, 3));
 			});
 			add(easy)
@@ -34,6 +37,8 @@ package game.state
 			medium = new FlxButton(FlxG.width/2-40, FlxG.height / 2 - 10, "Medium", function ():void 
 			{
 				FlxG.music.stop();
+				FlxG.playMusic(Asset.levelMP3, .5);
+				
 				FlxG.switchState(new PlayState(PlayState.DIFFICULTY_MEDIUM, 1, 0, -1, 0, 2));
 			});
 			add(medium)
@@ -42,6 +47,8 @@ package game.state
 			hard = new FlxButton(FlxG.width/2-40, FlxG.height / 2 + 10, "Hard", function ():void 
 			{
 				FlxG.music.stop();
+				FlxG.playMusic(Asset.levelMP3, .5);
+				
 				FlxG.switchState(new PlayState(PlayState.DIFFICULTY_HARD, 1, 0, -1, 0, 1));
 			});
 			add(hard)

@@ -69,6 +69,7 @@ package game.state
 			var mainMenu:FlxButton;
 			mainMenu = new FlxButton(FlxG.width/2-40, (FlxG.height / 2)  + 10, "Main Menu", function ():void 
 			{
+				FlxG.music.stop();
 				FlxG.switchState(new SplashState());
 			});
 			add(mainMenu)

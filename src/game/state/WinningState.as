@@ -37,6 +37,7 @@ package game.state
 		override public function create():void {
 			FlxG.bgColor = 0xff000000;
 			FlxG.play(Asset.woop_1MP3);
+			FlxG.play(Asset.victoryMP3);
 			
 			var title:FlxText;
 			title = new FlxText( 0, 0, FlxG.width, "YOU WIN!");
@@ -57,6 +58,7 @@ package game.state
 			var mainMenu:FlxButton;
 			mainMenu = new FlxButton(FlxG.width/2-40, (FlxG.height / 2), "Main Menu", function ():void 
 			{
+				FlxG.music.stop();
 				FlxG.switchState(new SplashState());
 			});
 			add(mainMenu)
