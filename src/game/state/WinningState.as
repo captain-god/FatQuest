@@ -15,6 +15,7 @@ package game.state
 		private var level:int;
 		private var timer:int;
 		private var difficulty:int;
+		private var lives:int;
 		
 		/**
 		 * Constructor
@@ -22,11 +23,12 @@ package game.state
 		 * @param	score - Your cumulative score so far
 		 * @param	level - the level you just beat.
 		 */
-		public function WinningState(timer:int, score:int, level:int, difficulty:int) {
+		public function WinningState(timer:int, score:int, level:int, difficulty:int, lives:int ) {
 			this.timer = timer;
 			this.score = score;
 			this.level = level;
 			this.difficulty = difficulty;
+			this.lives = lives;
 		}
 		
 		/**
@@ -41,10 +43,16 @@ package game.state
 			title.setFormat (null, 15, 0xFFFFFFFF, "center");
 			add(title);
 			
+			var livesscore:FlxText;
+			livesscore = new FlxText( 0, 40, FlxG.width, "Lives bonus: " + (lives * 1000 ) * difficulty);
+			livesscore.setFormat (null, 12, 0xFFFFFFFF, "center");
+			add(livesscore);
+			
 			var scoreBreakdown:FlxText;
-			scoreBreakdown = new FlxText( 0, 45, FlxG.width, "Final Score: " + ((score + (timer * 100)) * difficulty));
+			scoreBreakdown = new FlxText( 0, 55, FlxG.width, "Final Score: " + (((score + (timer * 100)) * difficulty) + ((lives * 1000 ) * difficulty)));
 			scoreBreakdown.setFormat (null, 12, 0xFFFFFFFF, "center");
 			add(scoreBreakdown);
+			
 			
 			var mainMenu:FlxButton;
 			mainMenu = new FlxButton(FlxG.width/2-40, (FlxG.height / 2), "Main Menu", function ():void 

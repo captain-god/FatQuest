@@ -35,7 +35,9 @@ package game.state
 		private var playing:        Boolean = true; //turns to false when you win or lose
 		private var somethingBroke: Boolean = false; //for sloppy, uneffective debugging.
 		private var currentScore:   int     = 0; //the score the user has gained from picking up blips
-		private var difficulty:     int;
+		private var difficulty:     int; //the difficulty of the level, defined up top
+		private var winStreak:      int; //how many rounds in a row has the player won?
+		private var livesLeft:      int; // how many lives does the player have left?
 		
 		//Just some text fields.
 		private var scoreTxt:       FlxText;
@@ -51,10 +53,12 @@ package game.state
 		 * @param   timer - the time to set to before you restart; default -1; If timer == -1, it sets the time
 		 * to (75 - (difficulty * 15)), meaning difficulty 1 (easy) = 60 seconds
 		 */
-		public function PlayState(diff:int, level:int = 1, score:int = 0, timer:int = -1):void {
+		public function PlayState(diff:int, level:int = 1, score:int = 0, timer:int = -1, winstreak:int = 0, lives:int = 0 ):void {
 			difficulty = diff;
 			currentLevel = level;
 			grandScore = score;
+			winStreak = winstreak;
+			livesLeft = lives;
 			
 			if (timer == -1) {
 				timeLimit = 75 - (difficulty * 15);
@@ -113,12 +117,9 @@ package game.state
 			try {
 				countDown();
 				isRoundOver();
-				if (!playing && FlxG.keys.SPACE) {
-					FlxG.switchState(new SplashState());
-				}
 
 				if (playing && FlxG.keys.SPACE) {
-					FlxG.switchState(new PlayState(difficulty, currentLevel, grandScore, timeLimit));
+					FlxG.switchState(new PlayState(difficulty, currentLevel, grandScore, timeLimit, winStreak, livesLeft));
 				}
 
 				super.update();
@@ -156,15 +157,22 @@ package game.state
 		 */
 		private function isRoundOver():void {
 			if (timeLimit <= 0) {
-				FlxG.switchState(new LosingState(timeLimit, grandScore + currentScore, currentLevel));
+				if (livesLeft == 0) {
+					FlxG.switchState(new LosingState(timeLimit, grandScore + currentScore, currentLevel, difficulty, livesLeft));					
+				}
+				else {
+					livesLeft--
+					trace(livesLeft);
+					FlxG.switchState(new LosingState(timeLimit, grandScore + currentScore, currentLevel, difficulty, livesLeft));
+				}
 			}
 			else if (goodies.countLiving() == 0 && goodies.countDead() > 0) {
 				//check to see if this is the last round!
 				if (currentLevel  == Level.LAST_LEVEL) {
-					FlxG.switchState(new WinningState(timeLimit, grandScore + currentScore, currentLevel, difficulty));
+					FlxG.switchState(new WinningState(timeLimit, grandScore + currentScore, currentLevel, difficulty, livesLeft));
 				}
 				else {
-					FlxG.switchState(new InterludeState(timeLimit, grandScore + currentScore, currentLevel, difficulty));
+					FlxG.switchState(new InterludeState(timeLimit, grandScore + currentScore, currentLevel, difficulty, livesLeft, winStreak + 1));
 				}
 			}
 

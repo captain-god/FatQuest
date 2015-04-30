@@ -21,7 +21,7 @@ package game.state
 			t.setFormat (null, 8, 0xFFFFFFFF, "center");
 			add(t);
 			
-			t = new FlxText(0, 45, FlxG.width, "WASD");
+			t = new FlxText(0, 45, FlxG.width, "WASD and Arrows");
 			t.setFormat (null, 8, 0xFF6666FF, "center");
 			add(t);
 			

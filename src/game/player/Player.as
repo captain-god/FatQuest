@@ -54,21 +54,22 @@ package game.player
 		 * Updates every tick;
 		 * checking to see which buttons are pressed, and, if any
 		 * which direction to move the character around.
+		 * Beta 1.0.3 supports WASD and Arrow Keys!
 		 */
 		override public function update():void {
-			if (FlxG.keys.pressed("W")) {
+			if (FlxG.keys.pressed("W") || FlxG.keys.pressed("UP")) {
 				y -= 1;
 			}
 			
-			if (FlxG.keys.pressed("S")) {
+			if (FlxG.keys.pressed("S") || FlxG.keys.pressed("DOWN")) {
 				y += 1;
 			}
 			
-			if (FlxG.keys.pressed("A")) {
+			if (FlxG.keys.pressed("A") || FlxG.keys.pressed("LEFT")) {
 				x -= 1;
 			}
 			
-			if (FlxG.keys.pressed("D")) {
+			if (FlxG.keys.pressed("D") || FlxG.keys.pressed("RIGHT")) {
 				x += 1;
 			}
 			

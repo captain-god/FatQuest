@@ -14,6 +14,8 @@ package game.state
 		private var score:int;
 		private var level:int;
 		private var timer:int;
+		private var lives:int;
+		private var winStreak:int;
 		private var difficulty:int;
 		
 		/**
@@ -23,10 +25,18 @@ package game.state
 		 * @param	level - the level you just beat.
 		 * @param   difficulty - the difficulty you're playing at
 		 */
-		public function InterludeState(timer:int, score:int, level:int, difficulty:int) {
+		public function InterludeState(timer:int, score:int, level:int, difficulty:int, lives:int, winStreak:int) {
 			this.level = level;
 			this.score = score + ((timer * (50 * difficulty)));
 			this.difficulty = difficulty;
+			this.lives = lives;
+			this.winStreak = winStreak;
+			
+			if (winStreak >= 3) {
+				this.lives = lives + 1;
+			}
+			
+			trace(lives);
 		}
 		
 		/**
@@ -48,8 +58,8 @@ package game.state
 			
 			var playgame:FlxButton;
 			playgame = new FlxButton(FlxG.width/2-40, (FlxG.height / 2) - 10, "Continue", function ():void 
-			{
-				FlxG.switchState(new PlayState(difficulty, level + 1, score));
+			{		
+				FlxG.switchState(new PlayState(difficulty, level + 1, score, -1, winStreak, lives));
 			});
 			add(playgame)
 			
@@ -60,15 +70,18 @@ package game.state
 			});
 			add(mainMenu)
 			
-			var levelcodetext:FlxText;
-			levelcodetext = new FlxText(0, FlxG.height - 40, FlxG.width, "Level " + (level + 1) + "'s passphrase is");
-			levelcodetext.setFormat (null, 8, 0xFFFFFFFF, "center");
-			add(levelcodetext);
+			var livesleft:FlxText;
+			livesleft = new FlxText(0, FlxG.height - 40, FlxG.width, "Lives remaining: " + lives);
+			livesleft.setFormat (null, 8, 0xFFFFFFFF, "center");
+			add(livesleft);
 			
-			var levelcode:FlxText;
-			levelcode = new FlxText(0, FlxG.height - 30, FlxG.width, Level.levelCode[level +1]);
-			levelcode.setFormat (null, 8, 0xFFFF0000, "center");
-			add(levelcode);
+			if (winStreak >= 3) {
+				winStreak = 0;
+				var livesBonus:FlxText;
+				livesBonus = new FlxText(0, FlxG.height - 30, FlxG.width, "+1 life for win streak!");
+				livesBonus.setFormat (null, 8, 0xFFFFFFFF, "center");
+				add(livesBonus);
+			}
 		}
 	}
 

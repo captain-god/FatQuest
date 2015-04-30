@@ -26,7 +26,7 @@ package game.state
 			easy = new FlxButton(FlxG.width/2-40, FlxG.height / 2 - 30, "Easy", function ():void 
 			{
 				FlxG.music.stop();
-				FlxG.switchState(new PlayState(PlayState.DIFFICULTY_EASY));
+				FlxG.switchState(new PlayState(PlayState.DIFFICULTY_EASY, 1, 0, -1, 0, 3));
 			});
 			add(easy)
 			
@@ -34,7 +34,7 @@ package game.state
 			medium = new FlxButton(FlxG.width/2-40, FlxG.height / 2 - 10, "Medium", function ():void 
 			{
 				FlxG.music.stop();
-				FlxG.switchState(new PlayState(PlayState.DIFFICULTY_MEDIUM));
+				FlxG.switchState(new PlayState(PlayState.DIFFICULTY_MEDIUM, 1, 0, -1, 0, 2));
 			});
 			add(medium)
 			
@@ -42,7 +42,7 @@ package game.state
 			hard = new FlxButton(FlxG.width/2-40, FlxG.height / 2 + 10, "Hard", function ():void 
 			{
 				FlxG.music.stop();
-				FlxG.switchState(new PlayState(PlayState.DIFFICULTY_HARD));
+				FlxG.switchState(new PlayState(PlayState.DIFFICULTY_HARD, 1, 0, -1, 0, 1));
 			});
 			add(hard)
 			
