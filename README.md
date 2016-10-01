@@ -10,6 +10,6 @@ Thanks/Credits
 [Google](http://google.com/) - Helped me loads, they don't get enough credit  
 [Chaotic Neutral](https://www.youtube.com/channel/UCNz5nxTt0r64Wjg7HfkebAg) - My Let's Play channel I have with some close friends, who are lovely, encouraging people. We might even play your games if you ask :+1:   
 
-Music and gameplay by me, Doug "dougRiss" Young. My music library is on [Soundcloud](http://soundcloud.com/auxadome) and it's Creative Commons stuff, completely free to use so long as you credit me somewhere ;) (it's not all like the music in this, I promise lol)
+Music and gameplay by me, dougRiss. My music library is on [Soundcloud](http://soundcloud.com/auxadome) and it's Creative Commons stuff, completely free to use so long as you credit me somewhere ;) (it's not all like the music in this, I promise lol)
 
 ##[Current Version](https://github.com/dougRiss/FatQuest/wiki/Version-History)
